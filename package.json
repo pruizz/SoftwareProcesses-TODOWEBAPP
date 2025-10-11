@@ -1,7 +1,7 @@
 {
   "name": "todowebapp",
   "version": "1.0.0",
-  "description": "ZTORE",
+  "description": "A simple To-Do web application",
   "main": "app.js",
   "type": "module",
   "scripts": {
