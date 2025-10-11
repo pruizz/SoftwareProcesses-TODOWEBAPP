@@ -1,0 +1,344 @@
+/*INDEX CSS*/ 
+
+.bi {       /*ok*/
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+
+a{                  /*ok*/
+  text-decoration: none;
+  color: black;
+}
+  body{         /*ok*/
+    font-family: "Quicksand", sans-serif;
+  }
+
+  .nav-scroller {       /*ok*/
+    position: relative;
+    z-index: 2;
+    height: 2.75rem;
+    overflow-y: hidden;
+  }
+
+  .nav-scroller .nav {      /*ok*/
+    display: flex;
+    flex-wrap: nowrap;
+    padding-bottom: 1rem;
+    margin-top: -1px;
+    overflow-x: auto;
+    text-align: center;
+    white-space: nowrap;
+  }
+  
+
+.carr{                          /*ok*/
+  box-sizing: border-box;
+  width:300px;
+  height:auto;
+  transform:rotate(10deg);
+  display:block;
+  max-width:100%;
+  
+
+}
+.title-cat{             /*ok*/
+  padding: 10px;
+  margin-left: 5%;
+  font-weight: bold;
+  font-size: 2em;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.text-cat {                 /*ok*/        
+  display: flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  height:18em;
+  padding-left:5%;
+  transition: transform 0.3s;
+  
+}
+.text-cat:hover {       /*ok*/
+  transform: scale(1.1);
+  margin: auto;
+}
+
+.title{         /*ok*/
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.column-design{         /*ok*/
+  padding-left: 8em;
+  padding-right: 8em;
+  padding-top: 1em;
+  
+  
+}
+
+.cat-img {      /*ok*/
+  display: inline-block;
+  width:auto; 
+  height: auto;
+  overflow: hidden;
+  padding-right: 5%;
+  object-fit: cover;
+  max-height: 17.5em;
+  max-width: 17.5em;
+  
+}
+
+.icat {                 /*ok*/
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 17.5em;
+  max-width: 17.5em;
+}
+
+
+.last{              /*ok*/
+  padding-bottom: 1em;
+}
+
+.cat-desc {          /*ok*/       
+  margin-bottom: 20px;
+}
+
+main{               /*ok*/
+  margin: 0 0 0 0;
+}
+
+.button-submit{      /*ok*/
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
+
+/*CATS CSS*/
+
+.card{      /*ok*/
+    
+    margin: 10%;
+    text-align: center;
+    transition: transform 0.5s ease;
+}
+
+.card-img-top{      /*es una imagen responsive */       /*ok*/
+max-width: 100%;
+height: auto;
+display: block;
+aspect-ratio:1/1;   /*hace que la imagen tenga el mismo alto que ancho */
+padding: 4%; /* incluye margen dentro de la foto */
+box-sizing: border-box; /* Incluye el padding dentro del tamaño total de la imagen */
+
+}
+.card-body{     /*ok*/
+justify-content:center;
+background-color: #212529;
+border-bottom-right-radius: 2%;
+border-bottom-left-radius: 2%;
+}
+
+.card:hover {       /*ok*/
+transform: scale(1.05);
+margin: auto;
+}
+
+.card-title{                /*ok*/
+color: white;
+}
+
+#ic-categories {
+   align-items: center;
+}
+
+
+/* ELEM CSS */
+/*.badge {
+  --bs-badge-font-weight: 0;
+}*/
+  .col_img{                 /*ok*/
+    display: flex;
+    justify-content: left;
+    align-items: center;
+  }
+  .img_container{               /*ok*/
+    max-width: 90%;
+  }
+  .fimage{      /*ok*/
+    max-width: 90%;
+    box-sizing: border-box;
+    height: auto;
+    display: block;
+  }
+ 
+  
+  .proof100 {             /*ok*/         
+    margin-top: 8em;
+    
+  }
+  .tittle100{          /*ok*/         
+    padding-top: 1em;
+    font-size: 4em;
+  }
+  .price100{          /*ok*/       
+    font-size: 1.5em;
+  }
+  
+  .caract{           /*ok*/   
+    margin-top: 4em;
+    padding-top: 1em;
+    padding-left: -0.5em;
+    padding-bottom: -1em;
+    border-top: 0.1em solid;
+    border-bottom: 0.1em solid;
+  } 
+  .description{             /*ok*/
+    margin-top: 3em;
+    justify-content: left;
+    font-size: 2em;
+    border-bottom: 0.05em solid;
+    padding-bottom: 0.2em;
+    margin-left: 0.1em;
+  
+  }
+  .content-description {                /*ok*/  
+    margin-top: 3em;
+    text-align: left;
+    text-align:justify;
+    display:flex;
+  
+  }
+  
+  
+  .button-container {       /*ok*/ 
+    display: flex;
+    justify-content: right;
+    gap: 1em;
+    margin-top:1em;
+  }
+  
+  .write-review-form{           /*ok*/
+    text-align: center;
+    margin-top: 3em;
+  }
+  
+  .title-review-form{           /*ok*/
+    font-size: 1.3em;
+    text-align: center;
+  }
+
+  .title-review-form-edited{           /*ok*/
+    font-size: 1em;
+    text-align: left;
+  }
+  .mb-3{            /*ok*/
+    margin-top:2em;
+    text-align:left;
+  }
+  .range-bar{                /*ok*/   
+    text-align:left;
+  }
+  .button_submit{       /*ok*/
+    display: flex;
+    justify-content: right;
+  }
+  .reviews{            /*ok*/         
+    margin-top: 2em;
+    justify-content: left;
+    font-size: 2em;
+    border-bottom: 0.05em solid;
+    padding-bottom: 0.2em;
+    margin-left: 0.1em;
+  }
+  .example-review{      /*ok*/
+    margin-top: 0.5em;
+  }
+  .client-name{         /*ok*/
+    font-size: 1.5em;
+    margin-top: 1em;
+  }
+  .date{            /*ok*/
+    font-size: 0.8em;
+    font-style: italic;
+  }
+  .text-review{         /*ok*/
+    margin-top: 0.5em;
+  }
+  .buttons{             /*ok*/
+    display: flex;
+    margin-top: 1em;
+    gap: 1em;
+  }
+  .link{        /*ok*/
+    text-decoration:none;
+    color:white;
+  }
+  .space{       /*ok*/
+    margin-top: 2em;
+  }
+  
+  
+  .row-settings{      /*ok*/
+    margin-left:8em;
+    margin-right:8em;
+  
+  }
+
+  /* FORM CSS */
+
+.form-title{        /*ok*/
+    font-size: 2em;
+    text-align: center;
+    border-bottom: 0.1em solid;
+    margin-top: 1em;
+}
+.form-content{                  /*ok*/   
+    margin-top: 3em;
+    text-align:center;
+}
+.title-badge{           /*ok*/
+    font-size: 0.8em;
+}
+.form-field{            /*ok*/
+    margin-top: 2em;
+}
+.property-title{            /*ok*/
+    border-bottom: 0.1em solid;
+    margin-top: 1.5em;
+}
+.form-field-final{              /*ok*/
+    margin-top: 2em;
+    margin-bottom: 4em;
+}
+.buttons_form{          /*ok*/
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4em;
+}
+
+.delete {
+  width: 50%; /* El ancho del div se adapta al tamaño de la pantalla */
+  margin: 5% auto; /* Centrar horizontalmente el div */
+  padding: 1.25rem; /* Espaciado interno */
+  background-color: white; /* Color de fondo (opcional) */
+  border: 0.06rem solid #212529; /* Borde */
+  border-radius: 0.625rem; /* Bordes redondeados */
+  box-shadow: 0 0.25rem 0.375rem rgba(120, 120, 120, 0.7); /* Sombra */
+  text-align: center;
+}
+
+.back {
+  width: 10%; /* El ancho del div se adapta al tamaño de la pantalla */
+  margin: 5% auto; /* Centrar horizontalmente el div */
+  padding: 1.25rem; /* Espaciado interno */
+  text-align: center; /* Centrar el texto dentro del div */
+}
+
+.text-form-label{
+  font-size: 0.9em;;
+}

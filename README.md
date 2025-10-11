@@ -10,8 +10,7 @@ Funcionalidades principales:
 - ✅ Marcar tareas como completadas
 - 🗑️ Eliminar tareas
 - ✏️ Editar tareas existentes
-- 💾 Persistencia de datos (según implementación)
-
+- 💾 Persistencia de datos JSON
 El objetivo del proyecto es **aplicar metodologías de desarrollo de software**, buenas prácticas de programación y control de versiones con **Git/GitHub**.
 
 ## 🛠️ Tecnologías utilizadas
