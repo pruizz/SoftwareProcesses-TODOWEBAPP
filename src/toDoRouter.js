@@ -11,8 +11,12 @@ const router = express.Router();
 const upload = multer({ dest: UPLOADS_FOLDER });
 
 router.get("/", (req, res) => {
-  res.render("index");
+  res.render("index",{tasks: toDoService.getTasks()});
   });
+
+router.get("/newTask", (req, res) => {
+  res.render("newTask");
+});
 
 router.post("/task/add",(req,res) => {
 

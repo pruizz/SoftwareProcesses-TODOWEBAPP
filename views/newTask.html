@@ -1,0 +1,40 @@
+{{>header}}
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="form-title">Crear una nueva tarea</div>
+    </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 form-content">
+          <form class="needs-validation" onsubmit="processTaskData(event)" id="taskForm" novalidate> <!--interceptamos el formulario-->
+          <div class="mb-3 form-field">
+            <label for="elem-title" class="form-label"><span class="badge rounded-pill text-bg-warning title-badge">Título de la tarea</span></label>
+            <input type="text" class="form-control" id="elem-title" name="title" placeholder="Comprar comida" required>
+            <div class="invalid-feedback" id="invalid-title-feedback">
+              El título no puede estar vacío.
+            </div>
+          </div>
+
+          <div class="mb-3 form-field">
+            <label for="elem-description" class="form-label"><span class="badge rounded-pill text-bg-warning title-badge">Descripción de la tarea</span></label>
+            <textarea class="form-control" id="elem-description" name="description" placeholder="Comprar comida para la semana en el supermercado" required></textarea>
+            <div class="invalid-feedback">
+              La descripción no puede estar vacía.
+            </div>
+          </div>
+
+          <div class="mb-3 form-field">
+            <label for="elem-dueDate" class="form-label"><span class="badge rounded-pill text-bg-warning title-badge">Fecha de vencimiento</span></label>
+            <input type="date" class="form-control" id="elem-dueDate" name="dueDate" required>
+            <div class="invalid-feedback">
+              La fecha de vencimiento no puede estar vacía.
+            </div>
+          </div>
+            <div class="button-submit">
+                <button type="submit" class="btn btn-lg btn-warning mb-3"><span class="fw-bold">Crear Tarea</span></button>
+            </div>
+            </form>
+        </div>
+</main>
+{{>footer}}

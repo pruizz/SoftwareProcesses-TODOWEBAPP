@@ -4,10 +4,19 @@
     <h1>Welcome to the Home Page</h1>
     <p>This is the main content of the home page.</p>
 
-  </div>
- 
+  </div>  
+    <h2>Agregar Tarea</h2>
+    <a href="/newTask" class="btn btn-primary">Nueva Tarea</a>
+
   <div> 
     <h2>Tareas</h2>
+    {{#tasks}}
+      <div>
+        <h3>{{title}}</h3>
+        <p>Descripción:{{description}}</p>
+        <p>Fecha de vencimiento: {{dueDate}}</p>
+      </div>
+    {{/tasks}}
 
   </div>
 
