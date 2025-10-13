@@ -128,24 +128,35 @@
     text-decoration: none;
 }
 
-/* Ocultar el input real */
-
-
-/* Estilo del botón personalizado */
-.custom-file-upload {
-    display: flex;             /* para centrar el texto */
-    justify-content: center;   /* centrar horizontalmente */
-    align-items: center;       /* centrar verticalmente */
-    padding: 10px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 10px;       /* mismo estilo que otros inputs */
-    font-weight: bold;
-    width: 100%;               /* ¡importante para que ocupe todo el ancho! */
-    transition: background-color 0.3s ease;
+.file-input-container {
+    position: relative;      /* contenedor relativo */
+    width: 100%;
+    height: 50px;
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+    box-sizing: border-box;
 }
 
-.custom-file-upload:hover {
-    background-color: #45a049;
+/* input invisible pero funcional */
+
+
+/* botón estilizado */
+.custom-file-upload {
+
+    color: black;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;              /* debajo del input invisible */
+}
+
+/* mostrar nombre de archivo */
+.file-name {
+    flex: 1;
+    font-size: 0.9rem;
+    color: #555;
 }

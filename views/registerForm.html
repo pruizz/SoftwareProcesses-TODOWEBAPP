@@ -41,11 +41,9 @@
             <div class="flex-column">
                 <label class="form-label">Foto de perfil</label>
             </div>
-            <div class="inputForm">
-                <label class="custom-file-upload">
-                    <input type="file" name="foto" accept="image/*" required>
-                    Seleccionar foto
-                </label>
+            <div class="inputForm file-input-container">
+                <input type="file" class="form-control" id="formFileSm" name="foto" placeholder="Seleccionar foto de perfil" accept="image/*" required>
+                <span class="file-name"></span>
             </div>
 
             <button class="button-submit">Crear cuenta</button>
