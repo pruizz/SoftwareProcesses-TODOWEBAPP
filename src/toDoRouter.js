@@ -3,6 +3,7 @@ import multer from "multer";
 import fs from "node:fs/promises";
 
 import * as toDoService from "./toDoService.js";
+import { create } from "node:domain";
 
 const UPLOADS_FOLDER = "uploads";
 const DEMO_FOLDER = "demo";
@@ -16,6 +17,23 @@ router.get("/", (req, res) => {
 
 router.get("/newTask", (req, res) => {
   res.render("newTask");
+});
+
+router.post("/task/add", upload.single("image"),(req,res) => {
+    let image = req.file ? req.file.filename : undefined;
+
+    let task = {
+        title: req.body.title,
+        description: req.body.description,
+        dueDate: req.body.dueDate,
+        priority: req.body.priority,
+        imageFilename: image,
+        completed: false,
+        priority: req.body.priority,
+        createdAt: new Date()
+    }
+    toDoService.addTask(task);
+    res.render("index", {tasks: toDoService.getTasks()});
 });
 
 router.post("/getUser", (req, res) => {
@@ -37,11 +55,16 @@ router.post("/task/add",(req,res) => {
     description: req.body.description,
     dueDate: req.body.dueDate,
     priority: req.body.priority,
+    imageFilename: image,
+    completed: false,
+    priority: req.body.priority,
+    createdAt: new Date()
   }
   toDoService.addTask(task);
-  res.render("index");
-})
-  
+  res.render("index", {tasks: toDoService.getTasks()});
+});
+
+
 
 
 export default router;
