@@ -49,10 +49,48 @@ router.post("/tasks/:id/delete", (req,res) => {
     res.redirect("/home");
 });
 
-router.post("/getUser", (req, res) => {
-    let user_login = req.json();
+router.post("/checkUser", (req, res) => {
+    let user_login = req.body;
 
-    let result = checkUserPass(user_login.username, user_login.password);
+    let result = toDoService.checkUserPass(user_login.username, user_login.password);
+
+    res.json(result);
+
+});
+
+router.post("/duplicateUsername", (req, res) => {
+    let username = req.body.username;
+
+    let result = toDoService.checkUserAvailable(username);
+
+    res.json(result);
+
+});
+
+router.post("/duplicateEmail", (req, res) => {
+    let email = req.body.email;
+
+    let result = toDoService.checkEmailAvailable(email);
+
+    res.json(result);
+
+});
+
+router.post("/newUser", (req, res) => {
+    let userAux = req.body;
+
+    let user = {
+        username: userAux.username,
+        email: userAux.email,
+        password: userAux.password,
+        badge: [],
+        profile_photo: "default.png",
+        tasks: []
+    }
+
+    let result = toDoService.addUser(user);
+
+    res.json(result);
 
 });
 

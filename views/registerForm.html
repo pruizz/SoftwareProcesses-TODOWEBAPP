@@ -2,30 +2,31 @@
 <body class="body-register">
 <main class="main-container">
     <div class="card-container">
-        <form class="form" action="/register" method="POST" enctype="multipart/form-data">
+        <form class="form" id="newUserForm" action="/register" method="POST" enctype="multipart/form-data">
 
             <!-- Nombre de usuario -->
             <div class="flex-column">
                 <label class="form-label">Nombre de usuario</label>
             </div>
             <div class="inputForm">
-                <input placeholder="Introduce tu nombre de usuario" class="input" type="text" name="username" required>
+                <input oninput="checkUsernameAvailability()" placeholder="Introduce tu nombre de usuario" class="input" type="text" id="usernameR" name="username" required>
             </div>
+                <div style="font-size: 0.7em; text-align: left"  id="usernameFeedback" class="text-danger"></div>
 
             <!-- Email -->
             <div class="flex-column">
                 <label class="form-label">Correo electrónico</label>
             </div>
             <div class="inputForm">
-                <input placeholder="Introduce tu email" class="input" type="email" name="email" required>
+                <input oninput="checkEmailAvailability()" id="emailR" placeholder="Introduce tu email" class="input" type="email" name="email" required>
             </div>
-
+            <div style="font-size: 0.7em; text-align: left"  id="emailFeedback" class="text-danger"></div>
             <!-- Contraseña -->
             <div class="flex-column">
                 <label class="form-label">Contraseña</label>
             </div>
             <div class="inputForm">
-                <input placeholder="Introduce tu contraseña" class="input" type="password" name="password" required>
+                <input id="passwordR1" placeholder="Introduce tu contraseña" class="input" type="password" name="password" required>
             </div>
 
             <!-- Confirmar contraseña -->
@@ -33,20 +34,20 @@
                 <label class="form-label">Confirmar contraseña</label>
             </div>
             <div class="inputForm">
-                <input placeholder="Confirma tu contraseña" class="input" type="password" name="confirm_password" required>
+                <input id="passwordR2" oninput="checkSamePassword()" placeholder="Confirma tu contraseña" class="input" type="password" name="confirm_password" required>
             </div>
-
+            <div style="font-size: 0.7em; text-align: left"  id="passwordFeedback" class="text-danger"></div>
             <!-- Foto de perfil -->
             <!-- Foto de perfil -->
             <div class="flex-column">
                 <label class="form-label">Foto de perfil</label>
             </div>
             <div class="inputForm file-input-container">
-                <input type="file" class="form-control" id="formFileSm" name="foto" placeholder="Seleccionar foto de perfil" accept="image/*" required>
+                <input disabled type="file" class="form-control" id="formFileSm" name="foto" placeholder="Seleccionar foto de perfil" accept="image/*">
                 <span class="file-name"></span>
             </div>
 
-            <button class="button-submit">Crear cuenta</button>
+            <button class="button-submit" id="newAccountBt" onclick="newUser(event)">Crear cuenta</button>
 
             <p class="p">
                 ¿Ya tienes cuenta?
