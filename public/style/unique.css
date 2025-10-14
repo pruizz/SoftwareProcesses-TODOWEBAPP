@@ -160,3 +160,17 @@
     font-size: 0.9rem;
     color: #555;
 }
+
+.task-card {
+    border: 1px solid #e0e0e0;
+    transition: box-shadow 0.2s ease-in-out;
+}
+
+.task-card:hover {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.task-completed {
+    text-decoration: line-through;
+    color: #888;
+}

@@ -19,6 +19,10 @@ router.get("/newTask", (req, res) => {
   res.render("newTask");
 });
 
+router.get("/home", (req,res) => {
+  res.render("index",{tasks : toDoService.getTasks()});
+})
+
 router.post("/task/add", upload.single("image"),(req,res) => {
     let image = req.file ? req.file.filename : undefined;
 
@@ -29,11 +33,10 @@ router.post("/task/add", upload.single("image"),(req,res) => {
         priority: req.body.priority,
         imageFilename: image,
         completed: false,
-        priority: req.body.priority,
         createdAt: new Date()
     }
     toDoService.addTask(task);
-    res.render("index", {tasks: toDoService.getTasks()});
+    res.redirect("/home");
 });
 
 router.post("/getUser", (req, res) => {
@@ -48,21 +51,7 @@ router.get("/register", (req, res) => {
 
 });
 
-router.post("/task/add",(req,res) => {
 
-  let task = {
-    title: req.body.title,
-    description: req.body.description,
-    dueDate: req.body.dueDate,
-    priority: req.body.priority,
-    imageFilename: image,
-    completed: false,
-    priority: req.body.priority,
-    createdAt: new Date()
-  }
-  toDoService.addTask(task);
-  res.render("index", {tasks: toDoService.getTasks()});
-});
 
 
 
