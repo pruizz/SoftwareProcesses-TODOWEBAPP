@@ -23,6 +23,10 @@ router.get("/home", (req,res) => {
   res.render("index",{tasks : toDoService.getTasks()});
 })
 
+router.get("/tasks", (req,res) => {
+  res.render("tasks",{tasks : toDoService.getTasks()});
+})
+
 router.post("/task/add", upload.single("image"),(req,res) => {
     let image = req.file ? req.file.filename : undefined;
 
