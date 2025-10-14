@@ -9,7 +9,7 @@ async function processTaskData(event) {
     });
 
     if (response.ok) {
-        window.location.href = '/';
+        window.location.href = '/home';
     }
 }
 
