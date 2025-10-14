@@ -39,6 +39,12 @@ router.post("/task/add", upload.single("image"),(req,res) => {
     res.redirect("/home");
 });
 
+router.post("/tasks/:id/delete", (req,res) => {
+    let id = req.params.id;
+    toDoService.deleteTask(id);
+    res.redirect("/home");
+});
+
 router.post("/getUser", (req, res) => {
     let user_login = req.json();
 
