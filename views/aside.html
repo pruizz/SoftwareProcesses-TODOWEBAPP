@@ -6,7 +6,7 @@
     </div>
     <div class="user-box">
         <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuario" class="avatar">
-        <div class="user-name">Juan Pérez</div>
+        <div class="user-name">{{user.name}}</div>
     </div>
 
     <nav class="menu">
@@ -14,10 +14,10 @@
         <a href="/tasks">Tareas</a>
         <a href="">Calendario</a>
         <a href="">Proyectos</a>
-        </nav>
-        <a href="" class="logout-link">Cerrar Sesión</a>
     </nav>
-        </aside>
+    <a href="" class="logout-link">Cerrar Sesión</a>
+    </nav>
+</aside>
 
 <!-- Modal de confirmación de cierre de sesión -->
 <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">

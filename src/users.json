@@ -6,5 +6,13 @@
         "badge": [],
         "profile_photo": "default.png",
         "tasks": []
+    },
+    "ivan pina": {
+        "username": "ivan pina",
+        "email": "ivanpina01@gmail.com",
+        "password": "123456",
+        "badge": [],
+        "profile_photo": "default.png",
+        "tasks": []
     }
 }
