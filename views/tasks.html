@@ -48,8 +48,17 @@
                             </div>
                         </div>
                         <div class="task-actions">
+                            <!-- Edit/complete buttons: keep as UI elements (backend routes not implemented) -->
+                            <button class="btn-action btn-edit" title="Editar tarea" onclick="alert('Función de edición no implementada')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H7.5a2 2 0 0 0-2 2v13"></path>
+                                    <path d="M18 14h-7a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h7"></path>
+                                    <path d="M6 18H4a2 2 0 0 0-2 2v2"></path>
+                                </svg>
+                            </button>
                             <!-- Delete form -->
-                            <form method="post" action="/tasks/{{id}}/delete" style="display:inline;">
+                            <form method="post" action="/tasks/{{id}}/delete" style="display:inline;" onsubmit="deleteTask(event, '{{id}}')">
                                 <button type="submit" class="btn-action btn-delete" title="Eliminar tarea">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -61,18 +70,6 @@
                                     </svg>
                                 </button>
                             </form>
-
-                            <!-- Edit/complete buttons: keep as UI elements (backend routes not implemented) -->
-                            <button class="btn-action btn-edit" title="Editar tarea"
-                                onclick="alert('Función de edición no implementada')">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round">
-                                    <path d="M12 20h9a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H7.5a2 2 0 0 0-2 2v13"></path>
-                                    <path d="M18 14h-7a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h7"></path>
-                                    <path d="M6 18H4a2 2 0 0 0-2 2v2"></path>
-                                </svg>
-                            </button>
                         </div>
                     </div>
                     {{/tasks}}
@@ -102,6 +99,19 @@
             if (el.dataset.completed === 'true') el.classList.add('completed');
         });
     });
+
+    function deleteTask(event, id) {
+        event.preventDefault();
+        fetch(`/tasks/${id}/delete`, {
+            method: 'POST'
+        }).then(res => {
+            if (res.ok) {
+                window.location.href = '/tasks';
+            } else {
+                alert('Error al borrar la tarea');
+            }
+        });
+    }
 </script>
 
 <!-- Modal Añadir Tarea (igual que en index, formulario envía a /task/add) -->

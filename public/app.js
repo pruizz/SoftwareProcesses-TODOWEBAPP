@@ -188,7 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(data)
             });
             if (response.ok) {
-                window.location.href = '/home';
+                if (window.location.pathname === '/tasks') {
+                    window.location.href = '/tasks';
+                } else {
+                    window.location.href = '/home';
+                }
             } else {
                 alert('Error al añadir la tarea');
             }

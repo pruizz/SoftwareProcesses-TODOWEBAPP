@@ -45,12 +45,13 @@ router.get("/home", (req, res) => {
         });
     res.render("index", {
         tasks: allTasks,
-        tareasRecientes: recientes
+        tareasRecientes: recientes,
+        user: currentUser || { name: "Invitado" }
     });
 })
 
 router.get("/tasks", (req, res) => {
-    res.render("tasks", { tasks: toDoService.getTasks() });
+    res.render("tasks", { tasks: toDoService.getTasks(), user: currentUser || { name: "Invitado" } });
 })
 
 router.post("/task/add", (req, res) => {

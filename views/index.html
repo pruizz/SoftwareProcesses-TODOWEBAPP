@@ -38,7 +38,7 @@
             </section>
             <!-- Sección inferior: tareas recientes y vencimientos -->
             <section class="bottom-cards">
-                <div class="card tareas-recientes" style="grid-column: 1 / span 3;">
+                <div class="bottom-card tareas-recientes" style="grid-column: 1 / span 3;">
                     <h2>Tareas Recientes</h2>
                     {{#tareasRecientes}}
                     <div class="task-card mini-task-card priority-{{priority}} {{#completada}}completed{{/completada}}"
@@ -66,23 +66,22 @@
                             </div>
                         </div>
                         <div class="mini-task-actions">
-                            <button class="btn-action btn-edit" title="Editar">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.146 2.854a.5.5 0 0 1 .708 0l.292.292a.5.5 0 0 1 0 .708l-8.5 8.5a.5.5 0 0 1-.168.11l-3 1a.5.5 0 0 1-.65-.65l1-3a.5.5 0 0 1 .11-.168l8.5-8.5zM11.207 3.5L3.5 11.207l-.646 1.939 1.939-.646L13.5 4.793l-2.293-2.293z"
-                                        fill="#111" />
+                            <button class="btn-action btn-edit" title="Editar tarea" onclick="alert('Función de edición no implementada')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M12 20h9a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H7.5a2 2 0 0 0-2 2v13"></path>
+                                    <path d="M18 14h-7a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h7"></path>
+                                    <path d="M6 18H4a2 2 0 0 0-2 2v2"></path>
                                 </svg>
                             </button>
-                            <button class="btn-action btn-delete" title="Borrar">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M6.5 6.5v5m3-5v5m-7-7h10m-9 0v7a2 2 0 0 0 2 2h4a2 2 0 0 0 2-2v-7m-7 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1"
-                                        stroke="#111" stroke-width="1.5" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </button>
+                            <form method="post" action="/tasks/{{id}}/delete" style="display:inline;" onsubmit="deleteTaskIndex(event, '{{id}}')">
+                                <button type="submit" class="btn-action btn-delete" title="Eliminar tarea">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                                    </svg>
+                                </button>
+                            </form>
                         </div>
                     </div>
                     {{/tareasRecientes}}
@@ -91,7 +90,7 @@
                     {{/tareasRecientes}}
                 </div>
 
-                <div class="card proximos-vencimientos" style="grid-column: 4 / span 1;">
+                <div class="bottom-card proximos-vencimientos" style="grid-column: 4 / span 1;">
                     <h2>Próximos Vencimientos</h2>
                     <p class="empty">No hay tareas para mostrar</p>
                 </div>
@@ -104,7 +103,12 @@
             <div class="modal-content modal-tarea custom-modal-tarea">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalTareaLabel">Añadir Nueva Tarea</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar" style="background: none; border: none; padding: 0; display: flex; align-items: center; justify-content: center; height: 40px; width: 40px;">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: auto;">
+                            <path d="M6 6L18 18" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M6 18L18 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/>
+                        </svg>
+                    </button>
                 </div>
 
                 <div class="modal-body">
@@ -149,3 +153,17 @@
 </body>
 
 </html>
+<script>
+function deleteTaskIndex(event, id) {
+    event.preventDefault();
+    fetch(`/tasks/${id}/delete`, {
+        method: 'POST'
+    }).then(res => {
+        if (res.ok) {
+            window.location.href = '/home';
+        } else {
+            alert('Error al borrar la tarea');
+        }
+    });
+}
+</script>

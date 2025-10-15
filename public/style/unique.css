@@ -1,3 +1,30 @@
+.bottom-cards .card:has(.no-tasks-message),
+.bottom-cards .card:has(.empty) {
+    min-height: 100px !important;
+    height: auto !important;
+    display: block;
+}
+.no-tasks-message,
+.card.proximos-vencimientos .empty {
+    margin-top: 1.5em;
+    margin-left: 0.5em;
+    text-align: left;
+    font-size: 1em;
+}
+
+.aside-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.aside-header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #3CA6A6;
+    text-align: center;
+}
 /* ===== MINI CARD TAREAS RECIENTES DASHBOARD ===== */
 .mini-task-card {
     background: #f9fafb;
@@ -141,17 +168,20 @@
 /* ===== Sección inferior: tareas recientes y vencimientos ===== */
 .bottom-cards {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-top: 2rem;
     align-items: stretch;
 }
 
-.bottom-cards .card {
-    background: #fff;
-    border-radius: 14px;
-    box-shadow: 0 2px 8px rgba(60, 166, 166, 0.08);
-    padding: 2rem 1.5rem;
+.bottom-cards .bottom-card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
     min-height: 320px;
     display: flex;
     flex-direction: column;
@@ -163,7 +193,7 @@
         grid-template-columns: 1fr;
     }
 
-    .bottom-cards .card {
+    .bottom-cards .bottom-card {
         min-height: 220px;
     }
 }
@@ -200,7 +230,7 @@
 
 .custom-add-btn {
     background-color: #3CA6A6;
-    color: #fff;
+    color: #3CA6A6;
     border: none;
     font-weight: 600;
     border-radius: 10px;
@@ -770,7 +800,7 @@ body {
     .btn-primary {
         background-color: #20C997;
         /* Color verde azulado */
-        color: white;
+        color: #3CA6A6;
     }
 
     .btn-primary:hover {
