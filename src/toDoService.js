@@ -13,7 +13,25 @@ let users = loadDataFromDisk();
 let tasks = new Map();
 let nextIdTasks = 0;
 
+export function addTask(task) {
+    let id = nextIdTasks++;
+    task.id = id.toString();
+    task.completed = false;
+    tasks.set(task.id, task);
+}
 
+export function deleteTask(id) {
+    let task = getTask(id);
+    tasks.delete(id);
+    return task;
+}
+
+export function getTasks() {
+    return [...tasks.values()];
+}
+export function getTask(id) {
+    return tasks.get(id);
+}
 
 export function addUser(user){
     users.set(user.username, user);
@@ -48,26 +66,6 @@ export function checkEmailAvailable(email) {
 export function checkUserPass(username, password) {
     let user = getUser(username);
     return user && user.password === password;
-}
-
-export function addTask(task) {
-    let id = nextIdTasks++;
-    task.id = id.toString();
-    task.completed = false;
-    tasks.set(task.id, task);
-}
-
-export function deleteTask(id) {
-    let task = getTask(id);
-    tasks.delete(id);
-    return task;
-}
-
-export function getTasks() {
-    return [...tasks.values()];
-}
-export function getTask(id) {
-    return tasks.get(id);
 }
 
 
