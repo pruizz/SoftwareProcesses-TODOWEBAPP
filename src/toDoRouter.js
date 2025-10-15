@@ -27,17 +27,14 @@ router.get("/tasks", (req,res) => {
   res.render("tasks",{tasks : toDoService.getTasks()});
 })
 
-router.post("/task/add", upload.single("image"),(req,res) => {
-    let image = req.file ? req.file.filename : undefined;
-
+router.post("/task/add",(req,res) => {
     let task = {
         title: req.body.title,
         description: req.body.description,
         dueDate: req.body.dueDate,
         priority: req.body.priority,
-        imageFilename: image,
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date(Date.now()).toLocaleDateString("es-ES")
     }
     toDoService.addTask(task);
     res.redirect("/home");

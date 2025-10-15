@@ -5,7 +5,7 @@ async function processTaskData(event) {
     const formData = new FormData(event.target);
     const response = await fetch('/task/add', {
         method: 'POST',
-        body: formData
+        body: new URLSearchParams(formData),
     });
 
     if (response.ok) {
