@@ -10,7 +10,9 @@
                 <h1>Gestión de tareas</h1>
                 <div class="actions">
                     <input type="text" placeholder="Buscar tarea...">
-                    <button id="add-task-btn">Añadir tarea</button>
+                    <!-- Abrir modal en lugar de redirigir -->
+                    <button id="add-task-btn" type="button" class="btn" data-bs-toggle="modal"
+                        data-bs-target="#modalTarea">Añadir tarea</button>
                 </div>
             </section>
 
@@ -29,8 +31,7 @@
                     <div class="task-card priority-{{priority}}" data-priority="{{priority}}" id="task-{{id}}"
                         {{#completed}}data-completed="true" {{/completed}}>
                         <div class="task-content">
-                            <h3 class="task-title">{{title}} <span class="task-priority priority-{{priority}}">{{priority}}</span>
-                            </h3>
+                            <h3 class="task-title">{{title}}</h3>
                             <p class="task-description">{{description}}</p>
                             <div class="task-meta">
                                 <span class="task-due-date">
@@ -102,3 +103,51 @@
         });
     });
 </script>
+
+<!-- Modal Añadir Tarea (igual que en index, formulario envía a /task/add) -->
+<div class="modal fade" id="modalTarea" tabindex="-1" aria-labelledby="modalTareaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-tarea custom-modal-tarea">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTareaLabel">Añadir Nueva Tarea</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+
+            <div class="modal-body">
+                <form id="formTarea" method="post" action="/task/add">
+                    <div class="mb-3">
+                        <label for="tituloTarea" class="form-label">Título</label>
+                        <input type="text" class="form-control" id="tituloTarea" name="title"
+                            placeholder="Ej. Reunión con cliente" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="descripcionTarea" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="descripcionTarea" name="description" rows="3"
+                            placeholder="Detalles de la tarea..."></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaTarea" class="form-label">Fecha de vencimiento</label>
+                        <input type="date" class="form-control" id="fechaTarea" name="dueDate" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="prioridadTarea" class="form-label">Prioridad</label>
+                        <select id="prioridadTarea" name="priority" class="form-select" required>
+                            <option value="" selected disabled>Seleccionar prioridad</option>
+                            <option value="High">Alta 🔴</option>
+                            <option value="Medium">Media 🟡</option>
+                            <option value="Low">Baja 🟢</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn custom-add-btn" form="formTarea">Añadir</button>
+            </div>
+        </div>
+    </div>
+</div>

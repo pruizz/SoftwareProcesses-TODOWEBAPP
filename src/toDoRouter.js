@@ -15,36 +15,45 @@ const upload = multer({ dest: UPLOADS_FOLDER });
 let currentUser = null;
 
 router.get("/", (req, res) => {
-  res.render("login",{tasks: toDoService.getTasks()});
-  });
-
-router.get("/newTask", (req, res) => {
-  res.render("newTask");
+    res.render("login", { tasks: toDoService.getTasks() });
 });
 
-router.get("/home", (req,res) => {
+router.get("/newTask", (req, res) => {
+    res.render("newTask");
+});
+
+router.get("/home", (req, res) => {
     const allTasks = toDoService.getTasks();
     // Ordenar por fecha de creación descendente
     const recientes = allTasks
         .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
         .slice(0, 2)
-        .map(t => ({
-            id: t.id,
-            titulo: t.title,
-            fecha: t.dueDate,
-            completada: t.completed
-        }));
+        .map(t => {
+            // Normalizar prioridad a valores esperados por CSS: High | Medium | Low
+            let p = (t.priority || '').toString().toLowerCase();
+            let normalized = 'Low';
+            if (p === 'high' || p === 'alta' || p === 'alta 🔴') normalized = 'High';
+            else if (p === 'medium' || p === 'media' || p === 'media 🟡') normalized = 'Medium';
+
+            return {
+                id: t.id,
+                titulo: t.title,
+                fecha: t.dueDate,
+                completada: t.completed,
+                priority: normalized
+            };
+        });
     res.render("index", {
         tasks: allTasks,
         tareasRecientes: recientes
     });
 })
 
-router.get("/tasks", (req,res) => {
-  res.render("tasks",{tasks : toDoService.getTasks()});
+router.get("/tasks", (req, res) => {
+    res.render("tasks", { tasks: toDoService.getTasks() });
 })
 
-router.post("/task/add",(req,res) => {
+router.post("/task/add", (req, res) => {
 
     let task = {
         title: req.body.title,
@@ -55,7 +64,18 @@ router.post("/task/add",(req,res) => {
         createdAt: new Date()
     }
     toDoService.addTask(task);
-    res.redirect("/home");
+    // Si el formulario envía un campo redirectTo lo usamos, si no comprobamos el referer
+    const redirectTo = req.body.redirectTo;
+    if (redirectTo) {
+        return res.redirect(redirectTo);
+    }
+
+    const ref = req.get('referer') || '';
+    if (ref.includes('/tasks')) {
+        return res.redirect('/tasks');
+    }
+
+    res.redirect('/home');
 });
 
 /* router.post("/task/add", upload.single("image"),(req,res) => {
@@ -73,7 +93,7 @@ router.post("/task/add",(req,res) => {
     res.redirect("/home");
 }); */
 
-router.post("/tasks/:id/delete", (req,res) => {
+router.post("/tasks/:id/delete", (req, res) => {
     let id = req.params.id;
     toDoService.deleteTask(id);
     res.redirect("/home");
@@ -84,9 +104,9 @@ router.post("/checkUser", (req, res) => {
 
     let result = toDoService.checkUserPass(user_login.username, user_login.password);
 
-    if (result){
+    if (result) {
         currentUser = result;
-    }else{
+    } else {
         currentUser = null;
     }
 
