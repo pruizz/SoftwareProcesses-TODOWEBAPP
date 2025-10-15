@@ -1,3 +1,152 @@
+/* ===== MINI CARD TAREAS RECIENTES DASHBOARD ===== */
+.mini-task-card {
+    background: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(60,166,166,0.07);
+    padding: 1rem 1rem 0.7rem 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    font-size: 0.97em;
+    border-left: 5px solid #F1F3F5;
+}
+/* ===== PRIORIDAD VISUAL EN CARDS ===== */
+.priority-alta, .priority-high {
+    color: #e53935;
+    background: #fdecea;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.92em;
+    font-weight: 600;
+    margin-left: 0.5em;
+    letter-spacing: 0.5px;
+}
+.priority-media, .priority-medium {
+    color: #f9a825;
+    background: #fff8e1;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.92em;
+    font-weight: 600;
+    margin-left: 0.5em;
+    letter-spacing: 0.5px;
+}
+.priority-baja, .priority-low {
+    color: #43a047;
+    background: #e8f5e9;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.92em;
+    font-weight: 600;
+    margin-left: 0.5em;
+    letter-spacing: 0.5px;
+}
+.card.tareas-recientes:has(.no-tasks-message),
+.card.proximos-vencimientos:has(.empty),
+.card.proximos-vencimientos:has(.no-tasks-message) {
+    min-height: 80px !important;
+    height: auto !important;
+    display: block;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+.no-tasks-message,
+.card.proximos-vencimientos .empty {
+    text-align: left;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+}
+/* ===== MINI CARD TAREAS RECIENTES DASHBOARD ===== */
+.mini-task-card {
+    background: #f9fafb;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(60,166,166,0.07);
+    padding: 1rem 1rem 0.7rem 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 60px;
+    font-size: 0.97em;
+}
+.mini-task-card.completed {
+    opacity: 0.7;
+    text-decoration: line-through;
+}
+.mini-task-content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.mini-task-title-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+}
+.check-mini {
+    width: 16px;
+    height: 16px;
+    margin-right: 0.5em;
+}
+.mini-label {
+    font-weight: 500;
+    color: #222;
+    font-size: 1em;
+}
+.mini-task-meta {
+    font-size: 0.92em;
+    color: #868E96;
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+}
+.mini-date svg {
+    vertical-align: middle;
+    margin-right: 2px;
+}
+.mini-task-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+.no-tasks-message {
+    color: #868E96;
+    font-size: 0.98em;
+    text-align: center;
+    margin: 1.5em 0 0 0;
+}
+/* ===== Sección inferior: tareas recientes y vencimientos ===== */
+.bottom-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    margin-top: 2rem;
+    align-items: stretch;
+}
+
+.bottom-cards .card {
+    background: #fff;
+    border-radius: 14px;
+    box-shadow: 0 2px 8px rgba(60, 166, 166, 0.08);
+    padding: 2rem 1.5rem;
+    min-height: 320px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+    .bottom-cards {
+        grid-template-columns: 1fr;
+    }
+    .bottom-cards .card {
+        min-height: 220px;
+    }
+}
 /* Modal personalizado añadir tarea */
 .custom-modal-tarea {
     background-color: #f9fafb;

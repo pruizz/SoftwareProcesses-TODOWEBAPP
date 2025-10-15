@@ -197,3 +197,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
+
+// Asignar color de prioridad y completado en dashboard (index)
+document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.mini-task-card').forEach(function (el) {
+        var p = (el.className.match(/priority-(\w+)/) || [])[1];
+        if (p === 'high') el.classList.add('priority-high');
+        else if (p === 'medium') el.classList.add('priority-medium');
+        else if (p === 'low') el.classList.add('priority-low');
+
+        if (el.classList.contains('completed')) el.classList.add('completed');
+    });
+});
