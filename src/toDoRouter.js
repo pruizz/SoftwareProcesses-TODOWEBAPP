@@ -11,6 +11,9 @@ const DEMO_FOLDER = "demo";
 const router = express.Router();
 const upload = multer({ dest: UPLOADS_FOLDER });
 
+
+let currentUser = null;
+
 router.get("/", (req, res) => {
   res.render("login",{tasks: toDoService.getTasks()});
   });
@@ -20,14 +23,42 @@ router.get("/newTask", (req, res) => {
 });
 
 router.get("/home", (req,res) => {
-  res.render("index",{tasks : toDoService.getTasks()});
+    const allTasks = toDoService.getTasks();
+    // Ordenar por fecha de creación descendente
+    const recientes = allTasks
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 2)
+        .map(t => ({
+            id: t.id,
+            titulo: t.title,
+            fecha: t.dueDate,
+            completada: t.completed
+        }));
+    res.render("index", {
+        tasks: allTasks,
+        tareasRecientes: recientes
+    });
 })
 
 router.get("/tasks", (req,res) => {
   res.render("tasks",{tasks : toDoService.getTasks()});
 })
 
-router.post("/task/add", upload.single("image"),(req,res) => {
+router.post("/task/add",(req,res) => {
+
+    let task = {
+        title: req.body.title,
+        description: req.body.description,
+        dueDate: req.body.dueDate,
+        priority: req.body.priority,
+        completed: false,
+        createdAt: new Date()
+    }
+    toDoService.addTask(task);
+    res.redirect("/home");
+});
+
+/* router.post("/task/add", upload.single("image"),(req,res) => {
     let image = req.file ? req.file.filename : undefined;
 
     let task = {
@@ -35,13 +66,12 @@ router.post("/task/add", upload.single("image"),(req,res) => {
         description: req.body.description,
         dueDate: req.body.dueDate,
         priority: req.body.priority,
-        imageFilename: image,
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date(Date.now()).toLocaleDateString("es-ES")
     }
     toDoService.addTask(task);
     res.redirect("/home");
-});
+}); */
 
 router.post("/tasks/:id/delete", (req,res) => {
     let id = req.params.id;
@@ -53,6 +83,12 @@ router.post("/checkUser", (req, res) => {
     let user_login = req.body;
 
     let result = toDoService.checkUserPass(user_login.username, user_login.password);
+
+    if (result){
+        currentUser = result;
+    }else{
+        currentUser = null;
+    }
 
     res.json(result);
 

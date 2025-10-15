@@ -1,3 +1,50 @@
+/* Modal personalizado añadir tarea */
+.custom-modal-tarea {
+    background-color: #f9fafb;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(60, 166, 166, 0.15);
+    border: 2px solid #3CA6A6;
+}
+
+.custom-modal-tarea .modal-header {
+    background: #334155;
+    color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-modal-tarea .modal-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.custom-modal-tarea .modal-body {
+    background: #f9fafb;
+}
+
+.custom-modal-tarea .modal-footer {
+    background: #f4f6fa;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.custom-add-btn {
+    background-color: #3CA6A6;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(60, 166, 166, 0.12);
+    transition: background 0.2s;
+}
+
+.custom-add-btn:hover {
+    background-color: #2e7c7c;
+    color: #fff;
+}
+
 .form-label {
     text-align: left;
     display: block;
@@ -126,7 +173,10 @@
 }
 
 .span a {
-    color: #2d79f3;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    /* ...otros estilos existentes... */
     font-weight: 500;
     text-decoration: none;
 }
@@ -143,6 +193,25 @@
     padding: 0 10px;
     gap: 10px;
     box-sizing: border-box;
+}
+
+/* Botón cerrar sesión abajo */
+
+.logout-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s;
+    background: none;
+    display: block;
+    margin-top: auto;
+}
+
+.logout-link:hover {
+    background-color: #475569;
+    color: #fff;
 }
 
 /* input invisible pero funcional */
@@ -191,7 +260,6 @@
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, sans-serif;
     background-color: #f4f6fa;
     color: #333;
     height: 100vh;
@@ -221,18 +289,31 @@ body {
     padding: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    justify-content: flex-end;
+    gap: 1.2rem;
+    justify-content: flex-start;
 }
 
 .user-box .avatar {
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
 }
 
 .user-box .user-name {
-    font-weight: bold;
+    font-size: 0.95em;
+    font-weight: 500;
     color: #e2e8f0;
-    white-space: nowrap;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
 }
 
 /* Menú */
@@ -295,18 +376,18 @@ body {
 }
 
 .actions button {
-    background-color: #2563eb;
+    background-color: #151717;
     color: white;
     border: none;
     padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .actions button:hover {
-    background-color: #1e40af;
+    background-color: #2d79f3;
 }
 
 /* ===== Tarjetas resumen ===== */
@@ -334,6 +415,45 @@ body {
     font-size: 1.6rem;
     font-weight: bold;
     color: #2563eb;
+}
+
+/* Tasks Section */
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+    margin-left: 0;
+    grid-column: 1 / span 2;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
+.task-list li {
+    list-style: none;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.task-list li:hover {
+    transform: translateY(-5px);
+}
+
+.task-list h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.task-list p {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0.3rem 0;
 }
 
 /* ===== Responsividad ===== */

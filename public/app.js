@@ -1,3 +1,27 @@
+// Modal Bootstrap para cerrar sesión
+document.addEventListener('DOMContentLoaded', function() {
+    const logoutBtn = document.querySelector('.logout-link');
+    const confirmBtn = document.getElementById('confirmLogout');
+    let logoutModal;
+    if (window.bootstrap) {
+        logoutModal = new bootstrap.Modal(document.getElementById('logoutModal'));
+    }
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (logoutModal) {
+                logoutModal.show();
+            }
+        });
+    }
+    if (confirmBtn) {
+        confirmBtn.addEventListener('click', function() {
+            // Aquí puedes redirigir o hacer logout
+            window.location.href = '/logout';
+        });
+    }
+});
+
 async function processTaskData(event) {
     event.preventDefault();
     const taskForm = document.getElementById('taskForm');
@@ -5,7 +29,7 @@ async function processTaskData(event) {
     const formData = new FormData(event.target);
     const response = await fetch('/task/add', {
         method: 'POST',
-        body: formData
+        body: new URLSearchParams(formData),
     });
 
     if (response.ok) {
@@ -33,7 +57,7 @@ async function checkUser(event){
     const result = await response.json();
 
     if (result){
-        alert("Correcto")
+        window.location.href = '/home';
     }else{
         alert("Incorrecto")
     }
@@ -129,3 +153,47 @@ async function newUser(event){
     }
 
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const addTaskBtn = document.getElementById('add-task-btn');
+  const modalTareaElement = document.getElementById('modalTarea');
+
+  if (addTaskBtn && modalTareaElement) {
+    const modalTarea = new bootstrap.Modal(modalTareaElement);
+
+    // Abrir modal al hacer clic en "Añadir tarea"
+    addTaskBtn.addEventListener('click', () => {
+      modalTarea.show();
+    });
+
+    // Manejar envío del formulario
+    const formTarea = document.getElementById('formTarea');
+        formTarea.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Obtener los datos del formulario con los nombres que espera el backend
+            const data = {
+                title: formTarea.tituloTarea.value.trim(),
+                description: formTarea.descripcionTarea.value.trim(),
+                dueDate: formTarea.fechaTarea.value,
+                priority: formTarea.prioridadTarea.value
+            };
+
+            // Enviar la tarea al backend
+            const response = await fetch('/task/add', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+            if (response.ok) {
+                window.location.href = '/home';
+            } else {
+                alert('Error al añadir la tarea');
+            }
+            modalTarea.hide();
+            formTarea.reset();
+    });
+  }
+});
