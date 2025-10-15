@@ -20,14 +20,42 @@ router.get("/newTask", (req, res) => {
 });
 
 router.get("/home", (req,res) => {
-  res.render("index",{tasks : toDoService.getTasks()});
+    const allTasks = toDoService.getTasks();
+    // Ordenar por fecha de creación descendente
+    const recientes = allTasks
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 2)
+        .map(t => ({
+            id: t.id,
+            titulo: t.title,
+            fecha: t.dueDate,
+            completada: t.completed
+        }));
+    res.render("index", {
+        tasks: allTasks,
+        tareasRecientes: recientes
+    });
 })
 
 router.get("/tasks", (req,res) => {
   res.render("tasks",{tasks : toDoService.getTasks()});
 })
 
-router.post("/task/add", upload.single("image"),(req,res) => {
+router.post("/task/add",(req,res) => {
+
+    let task = {
+        title: req.body.title,
+        description: req.body.description,
+        dueDate: req.body.dueDate,
+        priority: req.body.priority,
+        completed: false,
+        createdAt: new Date()
+    }
+    toDoService.addTask(task);
+    res.redirect("/home");
+});
+
+/* router.post("/task/add", upload.single("image"),(req,res) => {
     let image = req.file ? req.file.filename : undefined;
 
     let task = {
@@ -41,7 +69,7 @@ router.post("/task/add", upload.single("image"),(req,res) => {
     }
     toDoService.addTask(task);
     res.redirect("/home");
-});
+}); */
 
 router.post("/tasks/:id/delete", (req,res) => {
     let id = req.params.id;

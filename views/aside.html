@@ -1,13 +1,39 @@
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 <aside class="sidebar">
+    <div class="aside-header">
+        <h1>TACHAO</h1>
+    </div>
     <div class="user-box">
-        <img src="https://via.placeholder.com/50" alt="Usuario" class="avatar">
+        <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Usuario" class="avatar">
         <div class="user-name">Juan Pérez</div>
     </div>
 
     <nav class="menu">
-        <a href="#">Inicio</a>
-        <a href="#">Tareas</a>
-        <a href="#">Completadas</a>
-        <a href="#">Configuración</a>
+        <a href="/home">Inicio</a>
+        <a href="/tasks">Tareas</a>
+        <a href="">Calendario</a>
+        <a href="">Proyectos</a>
+        </nav>
+        <a href="" class="logout-link">Cerrar Sesión</a>
     </nav>
-</aside>
+        </aside>
+
+<!-- Modal de confirmación de cierre de sesión -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutModalLabel">¿Cerrar sesión?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Seguro que quieres cerrar sesión?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmLogout">Cerrar sesión</button>
+            </div>
+        </div>
+    </div>
+</div>

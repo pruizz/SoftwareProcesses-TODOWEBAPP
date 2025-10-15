@@ -1,3 +1,48 @@
+/* Modal personalizado añadir tarea */
+.custom-modal-tarea {
+    background-color: #f9fafb;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(60, 166, 166, 0.15);
+    border: 2px solid #3CA6A6;
+}
+
+.custom-modal-tarea .modal-header {
+    background: #334155;
+    color: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.custom-modal-tarea .modal-title {
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.custom-modal-tarea .modal-body {
+    background: #f9fafb;
+}
+
+.custom-modal-tarea .modal-footer {
+    background: #f4f6fa;
+    border-bottom-left-radius: 18px;
+    border-bottom-right-radius: 18px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.custom-add-btn {
+    background-color: #3CA6A6;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 6px rgba(60, 166, 166, 0.12);
+    transition: background 0.2s;
+}
+.custom-add-btn:hover {
+    background-color: #2e7c7c;
+    color: #fff;
+}
 .form-label {
     text-align: left;
     display: block;
@@ -123,7 +168,10 @@
 }
 
 .span a {
-    color: #2d79f3;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        /* ...otros estilos existentes... */
     font-weight: 500;
     text-decoration: none;
 }
@@ -139,6 +187,24 @@
     padding: 0 10px;
     gap: 10px;
     box-sizing: border-box;
+}
+/* Botón cerrar sesión abajo */
+
+.logout-link {
+    color: #cbd5e1;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: background 0.3s;
+    background: none;
+    display: block;
+    margin-top: auto;
+}
+
+.logout-link:hover {
+    background-color: #475569;
+    color: #fff;
 }
 
 /* input invisible pero funcional */
@@ -216,18 +282,31 @@ body {
     padding: 1rem;
     display: flex;
     align-items: center;
-    gap: 0.8rem;
-    justify-content: flex-end;
+    gap: 1.2rem;
+    justify-content: flex-start;
 }
 
 .user-box .avatar {
+    width: 2.5em;
+    height: 2.5em;
     border-radius: 50%;
+    object-fit: cover;
+    margin-right: 0.5rem;
+    flex-shrink: 0;
 }
 
 .user-box .user-name {
-    font-weight: bold;
+    font-size: 0.95em;
+    font-weight: 500;
     color: #e2e8f0;
-    white-space: nowrap;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    text-align: center;
+    white-space: normal;
+    word-break: break-word;
 }
 
 /* Menú */
@@ -363,4 +442,187 @@ body {
     .actions input {
         flex: 1;
     }
+}
+
+/* ===== Cards inferiores ===== */
+.bottom-cards {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Tarjetas base */
+.bottom-cards .card {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-cards h2 {
+    font-size: 1.1rem;
+    color: #0f172a;
+    margin-bottom: 1rem;
+}
+
+/* Tareas recientes */
+.task-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9fafb;
+    padding: 0.8rem 1rem;
+    border-radius: 10px;
+    margin-bottom: 0.8rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.task-item input[type="checkbox"] {
+    margin-right: 1rem;
+    transform: scale(1.2);
+}
+
+.task-item label {
+    flex: 1;
+    font-size: 0.95rem;
+    margin-left: 1.2rem; /* añade margen a la izquierda */
+}
+
+.task-item small {
+    color: #94a3b8;
+    font-size: 0.8rem;
+}
+
+.task-item .actions {
+    display: flex;
+    gap: 0.6rem;
+}
+
+.task-item .status,
+.task-item .delete {
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    background-color: #e2e8f0;
+}
+
+/* Próximos vencimientos */
+.proximos-vencimientos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.proximos-vencimientos .empty {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .bottom-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* checkbox */
+.checkbox-wrapper input[type="checkbox"] {
+    visibility: hidden;
+    display: none;
+}
+
+.checkbox-wrapper *,
+.checkbox-wrapper ::after,
+.checkbox-wrapper ::before {
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.checkbox-wrapper {
+    position: relative;
+    display: block;
+    overflow: hidden;
+}
+
+.checkbox-wrapper .label {
+    cursor: pointer;
+}
+
+.checkbox-wrapper .check {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox-wrapper .label svg {
+    vertical-align: middle;
+    width: 35px;   
+    height: 35px;  
+}
+
+.checkbox-wrapper .path1 {
+    stroke-dasharray: 400;
+    stroke-dashoffset: 400;
+    transition: .5s stroke-dashoffset;
+    opacity: 0;
+}
+
+.checkbox-wrapper .check:checked+label svg g path {
+    stroke-dashoffset: 0;
+    opacity: 1;
+}
+
+.aside-header h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+/* ===== Modal personalizado ===== */
+.modal-tarea {
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.modal-header {
+    background-color: #2563eb;
+    color: white;
+    align-items: center;
+}
+
+.modal-title {
+    font-weight: 600;
+}
+
+.btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    background-color: #f1f5f9;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #e2e8f0;
+}
+
+.form-select option[value="alta"] {
+    color: #dc2626;
+}
+
+.form-select option[value="media"] {
+    color: #ca8a04;
+}
+
+.form-select option[value="baja"] {
+    color: #16a34a;
 }

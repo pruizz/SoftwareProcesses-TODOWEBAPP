@@ -12,7 +12,7 @@
     "type": "git",
     "url": "todowebapp"
   },
-  "author": "Isidoro Perez Rivera, Pablo Ruiz Uroz",
+  "author": "Isidoro Perez Rivera, Pablo Ruiz Uroz, Jaime Sanchez Vazquez, Ivan Pina Brox",
   "license": "ISC",
   "dependencies": {
     "express": "^5.1.0",
