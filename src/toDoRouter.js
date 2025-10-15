@@ -11,6 +11,9 @@ const DEMO_FOLDER = "demo";
 const router = express.Router();
 const upload = multer({ dest: UPLOADS_FOLDER });
 
+
+let currentUser = null;
+
 router.get("/", (req, res) => {
   res.render("login",{tasks: toDoService.getTasks()});
   });
@@ -63,9 +66,8 @@ router.post("/task/add",(req,res) => {
         description: req.body.description,
         dueDate: req.body.dueDate,
         priority: req.body.priority,
-        imageFilename: image,
         completed: false,
-        createdAt: new Date()
+        createdAt: new Date(Date.now()).toLocaleDateString("es-ES")
     }
     toDoService.addTask(task);
     res.redirect("/home");
@@ -81,6 +83,12 @@ router.post("/checkUser", (req, res) => {
     let user_login = req.body;
 
     let result = toDoService.checkUserPass(user_login.username, user_login.password);
+
+    if (result){
+        currentUser = result;
+    }else{
+        currentUser = null;
+    }
 
     res.json(result);
 

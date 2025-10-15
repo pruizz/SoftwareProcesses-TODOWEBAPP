@@ -252,7 +252,6 @@
 }
 
 body {
-    font-family: "Segoe UI", Tahoma, sans-serif;
     background-color: #f4f6fa;
     color: #333;
     height: 100vh;
@@ -369,18 +368,18 @@ body {
 }
 
 .actions button {
-    background-color: #2563eb;
+    background-color: #151717;
     color: white;
     border: none;
     padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
 }
 
 .actions button:hover {
-    background-color: #1e40af;
+    background-color: #2d79f3;
 }
 
 /* ===== Tarjetas resumen ===== */
@@ -408,6 +407,45 @@ body {
     font-size: 1.6rem;
     font-weight: bold;
     color: #2563eb;
+}
+
+/* Tasks Section */
+.task-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    text-align: left;
+    margin-left: 0;
+    grid-column: 1 / span 2;
+    width: 100%;
+    margin: 0;
+    padding: 1rem;
+}
+
+.task-list li {
+    list-style: none;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.2s;
+}
+
+.task-list li:hover {
+    transform: translateY(-5px);
+}
+
+.task-list h3 {
+    font-size: 1.2rem;
+    color: #1e293b;
+    margin-bottom: 0.5rem;
+}
+
+.task-list p {
+    font-size: 1rem;
+    color: #64748b;
+    margin: 0.3rem 0;
 }
 
 /* ===== Responsividad ===== */

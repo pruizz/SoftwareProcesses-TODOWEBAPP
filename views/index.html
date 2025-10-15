@@ -1,4 +1,3 @@
-
 {{>header}}
 <body>
     <div class="dashboard">
@@ -13,7 +12,9 @@
                 <h1>Dashboard</h1>
                 <div class="actions">
                     <input type="text" placeholder="Buscar tarea...">
-                    <button id="add-task-btn">Añadir tarea</button>
+                    <button type="submit" class="button-submit">
+                        <a href="/newTask" class="text-decoration-none text-white">Añadir tarea</a>
+                    </button>
                 </div>
             </section>
 
@@ -21,7 +22,7 @@
             <section class="summary-cards">
                 <div class="summary-card">
                     <h2>Total tareas</h2>
-                    <p>24</p>
+                    <p>{{tasks.length}}</p>
                 </div>
                 <div class="summary-card">
                     <h2>Completadas</h2>
@@ -81,6 +82,21 @@
                     <h2>Próximos Vencimientos</h2>
                     <p class="empty">No hay tareas para mostrar</p>
                 </div>
+            </section>
+
+            <!-- Section to display tasks -->
+            <section class="task-list">
+                <h2>My Tasks</h2>
+                <ul style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; padding: 0;">
+                    {{#tasks}}
+                    <li>
+                        <h3>{{title}}</h3>
+                        <p>{{description}}</p>
+                        <p>Due: {{dueDate}}</p>
+                        <p>Priority: {{priority}}</p>
+                    </li>
+                    {{/tasks}}
+                </ul>
             </section>
 
         </main>
