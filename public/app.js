@@ -33,7 +33,7 @@ async function checkUser(event){
     const result = await response.json();
 
     if (result){
-        alert("Correcto")
+        window.location.href = '/home';
     }else{
         alert("Incorrecto")
     }

@@ -65,7 +65,11 @@ export function checkEmailAvailable(email) {
 
 export function checkUserPass(username, password) {
     let user = getUser(username);
-    return user && user.password === password;
+    if (user && user.password === password){
+        return user
+    }else{
+        return null
+    }
 }
 
 

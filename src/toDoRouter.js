@@ -11,6 +11,9 @@ const DEMO_FOLDER = "demo";
 const router = express.Router();
 const upload = multer({ dest: UPLOADS_FOLDER });
 
+
+let currentUser = null;
+
 router.get("/", (req, res) => {
   res.render("login",{tasks: toDoService.getTasks()});
   });
@@ -20,7 +23,7 @@ router.get("/newTask", (req, res) => {
 });
 
 router.get("/home", (req,res) => {
-  res.render("index",{tasks : toDoService.getTasks()});
+  res.render("index",{user : currentUser, tasks : toDoService.getTasks()});
 })
 
 router.get("/tasks", (req,res) => {
@@ -50,6 +53,12 @@ router.post("/checkUser", (req, res) => {
     let user_login = req.body;
 
     let result = toDoService.checkUserPass(user_login.username, user_login.password);
+
+    if (result){
+        currentUser = result;
+    }else{
+        currentUser = null;
+    }
 
     res.json(result);
 
